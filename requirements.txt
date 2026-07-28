@@ -1,0 +1,10 @@
+# Core (required to run the app)
+streamlit
+numpy
+pandas
+sentence-transformers   # I replaced the old TF-IDF baseline for the so-called "real embeddings"
+google-genai             # I got Stockholm Syndrome with this thing
+
+# Optional upgrades — install when you get there
+# faiss-cpu               # or chromadb, for a real vector database at scale
+# pypdf                    # if you want to ingest PDF documents
