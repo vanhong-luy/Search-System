@@ -2,7 +2,7 @@
 
 ## Method
 
-13 test queries were run against the live app (12 in-scope, spanning bosses, events, armors, accessories, potions, and weapons, plus 1 out-of-scope control query). For each, the retrieved sources panel (including cosine similarity scores) and generated answer were recorded, then checked for correctness against actual game data.
+13 test queries were run against the live app (12 in-scope, spanning bosses, events, armors, accessories, potions, and weapons, plus 1 out-of-scope control query). For each, the retrieved sources panel and generated answer were recorded, then checked for correctness against actual game data.
 
 ## Results
 
@@ -26,10 +26,10 @@
 
 ## Discussion
 
-**What worked:** Retrieval was accurate across every in-scope category (bosses, events, accessories, potions, armors, weapons), including cross-entity queries that needed to pull from multiple documents at once (#10). The title-match filter fix was directly validated by the Eye of Cthulhu regression test (#1), which previously misretrieved before the fix. In-scope top similarity scores generally landed between 0.45 and 0.69, giving a rough sense of what a confident, on-topic match looks like for this embedding model.
+**What worked:** Retrieval was accurate across every in-scope category (bosses, events, accessories, potions, armors, weapons), including cross-entity queries that needed to pull from multiple documents at once (#10). The title-match filter fix was directly validated by the Eye of Cthulhu regression test (#1) (misretrieved before the fix).
 
-**Notable result:** Boss and event drop data exists in the source dataset but, due to time constraints and since it's not the core focus of boss preparation, queries about drops still retrieve correctly in testing (#9) but don't show further detail on what dropped items actually do. In short, it shows *what* a boss/event drops, but not *what it does*.
+**Notable result:** Boss and event drop data exists in the source dataset but due to time constraint and not related to boss preparation itself, the queries will still retrieved them correctly in testing, but will not show any further details for certain items. In a word, it shows you what the boss/event drop, but not what it does.
 
-**Graceful failure:** The out-of-scope control query (#13) is a stronger result than a simple "no sources" case — the system still retrieved *something* (Lunatic Cultist and Martian Madness chunks), but at very low similarity scores (0.29–0.31), well below the range seen on any in-scope query. Rather than forcing an answer from these weak matches, the system correctly recognized the low relevance and stated it lacked the information, instead of hallucinating a plausible-sounding answer. This is the behavior we want when retrieval genuinely comes up empty or off-topic.
+**Graceful failure:** The out-of-scope control query (#13) confirms the system doesn't hallucinate when it has no sources - it stated clearly that it lacked the information rather than pulling an answer out of thin air. This is the behavior we looking for when the retrieval process comes up empty.
 
-**Fallback behavior:** During testing, the API key was briefly invalid and the generation step fell back to extractive mode (returning raw retrieved text rather than an LLM-generated answer). This shows the app degrades gracefully rather than crashing outright, keeping the chatbot usable even when the LLM call fails.
+**Fallback behavior:** During testing, the API key was temporary invalid and the generation step occasionally fell back to extractive mode (returning raw retrieved text rather than an LLM-generated answer). This is show that, the app degrades gracefully rather than plummeting head down to the ground and cause a huge error, make the chatbot become unusable.
