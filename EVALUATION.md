@@ -2,7 +2,7 @@
 
 ## Method
 
-13 test queries were run against the live app (12 in-scope, spanning bosses, events, items, and weapons, plus 1 out-of-scope control query). For each, the retrieved sources panel and generated answer were recorded, then checked for correctness against actual game data.
+13 test queries were run against the live app (12 in-scope, spanning bosses, events, armors, accessories, potions, and weapons, plus 1 out-of-scope control query). For each, the retrieved sources panel and generated answer were recorded, then checked for correctness against actual game data.
 
 ## Results
 
