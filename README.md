@@ -59,3 +59,7 @@ streamlit run app.py
 Set Gemini API key as an environment variable before running:
 
 set GEMINI_API_KEY="" # not here actually, use your cmd, also no "" when use api key btw
+
+btw, idk what I just did, but DO NOT delete bread.gif, otherwise everthing will break
+Keep it as it is and things will be fine
+cheers.
